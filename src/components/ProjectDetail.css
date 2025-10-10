@@ -1,0 +1,156 @@
+.project-detail-container {
+  margin-top: 20px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #2c5364;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-bottom: 30px;
+}
+
+.back-button:hover {
+  background: #203a43;
+  transform: translateX(-5px);
+}
+
+.back-button.bottom {
+  margin-top: 40px;
+  margin-bottom: 0;
+}
+
+.project-header {
+  margin-bottom: 40px;
+}
+
+.project-header h1 {
+  color: #2c5364;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.project-header .tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tech-tag {
+  background: #2c5364;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.project-meta-large {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 15px;
+}
+
+.project-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.project-image {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.project-image:hover img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  margin-top: 40px;
+}
+
+.project-section {
+  margin-bottom: 40px;
+}
+
+.project-section h2 {
+  color: #2c5364;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #2c5364;
+}
+
+.project-description {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #555;
+  white-space: pre-line;
+}
+
+.project-section p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: #555;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+}
+
+.results-list li {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: #555;
+  padding: 12px 0;
+  padding-left: 30px;
+  position: relative;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.results-list li:last-child {
+  border-bottom: none;
+}
+
+.results-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #2c5364;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .project-header h1 {
+    font-size: 2em;
+  }
+
+  .project-images {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image img {
+    height: 250px;
+  }
+}

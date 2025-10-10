@@ -1,0 +1,86 @@
+.header {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin: 0 auto 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: #2c5364;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.header .title {
+  font-size: 1.3em;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: white;
+  color: #2c5364;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s;
+  border: 2px solid white;
+  font-weight: 600;
+}
+
+.contact-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: white;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 40px 20px;
+  }
+
+  .header h1 {
+    font-size: 2em;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-links a {
+    justify-content: center;
+  }
+}
