@@ -10,7 +10,7 @@ function Header() {
       </div>
       
       <h1>Nonthawat Pinchai</h1>
-      <p className="title">Full-Stack Developer | Project Manager | Innovative Builder </p>
+      <p className="title">Full-Stack Developer | Project Manager | Innovative Builder</p>
       
       <div className="contact-links">
         <a href="mailto:nek.nonthawat907@outlook.com">

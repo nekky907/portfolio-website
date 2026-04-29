@@ -5,7 +5,7 @@ import './ProjectDetail.css'
 
 function ProjectDetail() {
   const { id } = useParams()
-  const project = projectsData.find(p => p.id === parseInt(id))
+  const project = projectsData.find(p => p.id === Number(id))
 
   if (!project) {
     return (
@@ -30,8 +30,8 @@ function ProjectDetail() {
         <div className="project-header">
           <h1>{project.title}</h1>
           <div className="tech-stack">
-            {project.tags.map((tag, index) => (
-              <span key={index} className="tech-tag">{tag}</span>
+            {project.tags.map(tag => (
+              <span key={tag} className="tech-tag">{tag}</span>
             ))}
           </div>
           <p className="project-meta-large">{project.meta}</p>
@@ -39,7 +39,7 @@ function ProjectDetail() {
 
         <div className="project-images">
           {project.images.map((image, index) => (
-            <div key={index} className="project-image">
+            <div key={image} className="project-image">
               <img src={image} alt={`${project.title} - Image ${index + 1}`} />
             </div>
           ))}
@@ -64,8 +64,8 @@ function ProjectDetail() {
           <section className="project-section">
             <h2>Key Results</h2>
             <ul className="results-list">
-              {project.results.map((result, index) => (
-                <li key={index}>{result}</li>
+              {project.results.map(result => (
+                <li key={result}>{result}</li>
               ))}
             </ul>
           </section>

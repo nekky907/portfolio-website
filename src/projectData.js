@@ -3,7 +3,7 @@ export const projectsData = [
   {
     id: 1,
     title: 'London House Chiang Mai Website',
-    shortDescription: 'Created full-stack and miantained the London House Chiang Mai website using React.',
+    shortDescription: 'Created and maintained the full-stack London House Chiang Mai website using React.',
     tags: ['Londonhouse-cm', 'React', 'Full-Stack Web-Dev', 'API Integration', 'UI/UX', 'Server Management'],
     meta: 'Duration: 12 months | Budget: $450',
     // Detailed information
@@ -34,10 +34,10 @@ export const projectsData = [
      Link: https://londonhouse-cm.com
     `,
     images: [
-  `${import.meta.env.BASE_URL}Projects/LH1.png`,
+      `${import.meta.env.BASE_URL}Projects/LH1.png`,
       `${import.meta.env.BASE_URL}Projects/LH2.png`,
-        `${import.meta.env.BASE_URL}Projects/LH3.png`,
-        `${import.meta.env.BASE_URL}Projects/LH4.png`
+      `${import.meta.env.BASE_URL}Projects/LH3.png`,
+      `${import.meta.env.BASE_URL}Projects/LH4.png`
     ],
     challenge: 'London House needed a scalable platform to manage multiple educational programs (Disney placements, Canadian study programs, English courses) with frequently changing information. The agency required a system that could handle nationwide roadshow registrations, provide bilingual content, and most critically—allow non-technical staff to update program details, schedules, and activities independently without developer support.',
     solution: 'Built a React-based web application with a custom staff dashboard hosted on Render. Integrated Leaflet Maps for location visualization, implemented a dynamic activities calendar for event registration workflows, and created an intuitive content management system that empowers staff to maintain current information across all program sections. Added visitor analytics to track conversion funnels and optimize the student application journey.',
@@ -53,7 +53,7 @@ export const projectsData = [
     id: 2,
     title: 'Depression & Fibromyalgia Daily Tracker',
     shortDescription: 'A full-stack React health tracker for managing depression and fibromyalgia symptoms. Features cloud sync, analytics dashboard, medication tracking, and data export for medical appointments. Built with React and Supabase.',
-    tags: ['health-tracking', 'medical-app', 'Pfull-stack-development', 'React', 'Supabase', 'Data Visualization'],
+    tags: ['health-tracking', 'medical-app', 'full-stack-development', 'React', 'Supabase', 'Data Visualization'],
     meta: 'Duration: 2 Weeks | Solo Dev | Budget: $0',
     fullDescription: `A comprehensive full-stack health tracking web application designed to help individuals managing depression and fibromyalgia monitor their daily symptoms, medication adherence, and lifestyle patterns. The application provides real-time cloud synchronization, data visualization, and analytics to identify health trends and share actionable insights with healthcare providers.
     
