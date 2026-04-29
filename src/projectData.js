@@ -111,5 +111,31 @@ Key Technical Features:
       'Real-time synchronization',
       'Reduced cognitive load'
     ]
+  },
+  {
+    id: 3,
+    title: 'Sclass Website',
+    shortDescription: 'Details coming soon.',
+    tags: [],
+    meta: '',
+    comingSoon: true,
+    fullDescription: '',
+    images: [],
+    challenge: '',
+    solution: '',
+    results: []
+  },
+  {
+    id: 4,
+    title: 'YMCA Website & Back System',
+    shortDescription: 'Details coming soon.',
+    tags: [],
+    meta: '',
+    comingSoon: true,
+    fullDescription: '',
+    images: [],
+    challenge: '',
+    solution: '',
+    results: []
   }
 ]

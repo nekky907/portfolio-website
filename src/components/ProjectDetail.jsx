@@ -20,6 +20,28 @@ function ProjectDetail() {
     )
   }
 
+  if (project.comingSoon) {
+    return (
+      <div className="container project-detail-container">
+        <div className="content">
+          <Link to="/" className="back-button">
+            <FaArrowLeft /> Back to Home
+          </Link>
+          <div className="project-header">
+            <h1>{project.title}</h1>
+          </div>
+          <section className="project-section coming-soon-section">
+            <h2>Coming Soon</h2>
+            <p>Details for this project are still being written. Check back soon.</p>
+          </section>
+          <Link to="/" className="back-button bottom">
+            <FaArrowLeft /> Back to All Projects
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="container project-detail-container">
       <div className="content">
