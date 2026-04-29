@@ -6,7 +6,7 @@ function Header() {
   return (
     <header className="header">
       <div className="profile-pic">
-        <img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Profile" />
+        <img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Nonthawat Pinchai" />
       </div>
       
       <h1>Nonthawat Pinchai</h1>
