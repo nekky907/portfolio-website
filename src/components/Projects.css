@@ -71,3 +71,12 @@
 .project-card:hover .view-details {
   gap: 10px;
 }
+
+.project-card.coming-soon {
+  border-left-color: #999;
+}
+
+.project-card.coming-soon .view-details {
+  color: #888;
+  font-style: italic;
+}

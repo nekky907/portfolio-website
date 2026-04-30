@@ -5,7 +5,7 @@ import './ProjectDetail.css'
 
 function ProjectDetail() {
   const { id } = useParams()
-  const project = projectsData.find(p => p.id === parseInt(id))
+  const project = projectsData.find(p => p.id === Number(id))
 
   if (!project) {
     return (
@@ -14,6 +14,28 @@ function ProjectDetail() {
           <h2>Project not found</h2>
           <Link to="/" className="back-button">
             <FaArrowLeft /> Back to Home
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (project.comingSoon) {
+    return (
+      <div className="container project-detail-container">
+        <div className="content">
+          <Link to="/" className="back-button">
+            <FaArrowLeft /> Back to Home
+          </Link>
+          <div className="project-header">
+            <h1>{project.title}</h1>
+          </div>
+          <section className="project-section coming-soon-section">
+            <h2>Coming Soon</h2>
+            <p>Details for this project are still being written. Check back soon.</p>
+          </section>
+          <Link to="/" className="back-button bottom">
+            <FaArrowLeft /> Back to All Projects
           </Link>
         </div>
       </div>
@@ -30,8 +52,8 @@ function ProjectDetail() {
         <div className="project-header">
           <h1>{project.title}</h1>
           <div className="tech-stack">
-            {project.tags.map((tag, index) => (
-              <span key={index} className="tech-tag">{tag}</span>
+            {project.tags.map(tag => (
+              <span key={tag} className="tech-tag">{tag}</span>
             ))}
           </div>
           <p className="project-meta-large">{project.meta}</p>
@@ -39,7 +61,7 @@ function ProjectDetail() {
 
         <div className="project-images">
           {project.images.map((image, index) => (
-            <div key={index} className="project-image">
+            <div key={image} className="project-image">
               <img src={image} alt={`${project.title} - Image ${index + 1}`} />
             </div>
           ))}
@@ -64,8 +86,8 @@ function ProjectDetail() {
           <section className="project-section">
             <h2>Key Results</h2>
             <ul className="results-list">
-              {project.results.map((result, index) => (
-                <li key={index}>{result}</li>
+              {project.results.map(result => (
+                <li key={result}>{result}</li>
               ))}
             </ul>
           </section>
