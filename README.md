@@ -38,7 +38,7 @@ A comprehensive health tracking application designed to help individuals manage 
 
 I'm always open to discussing new projects, creative ideas, or opportunities to collaborate.
 
-- **Email:** [nek.nonthawat907@gmail.com](mailto:nek.nonthawat907@gmail.com)
+- **Email:** [nek.nonthawat907@outlook.com](mailto:nek.nonthawat907@outlook.com)
 - **LinkedIn:** [linkedin.com/in/nonthawat-pinchai-30131b265/](https://www.linkedin.com/in/nonthawat-pinchai-30131b265/)
 - **GitHub:** [github.com/nekky907](https://github.com/nekky907)
 - **Portfolio:** [nekky907.github.io/portfolio-website](https://nekky907.github.io/portfolio-website/)
