@@ -59,13 +59,40 @@ function ProjectDetail() {
           <p className="project-meta-large">{project.meta}</p>
         </div>
 
-        <div className="project-images">
-          {project.images.map((image, index) => (
-            <div key={image} className="project-image">
-              <img src={image} alt={`${project.title} - Image ${index + 1}`} />
-            </div>
-          ))}
-        </div>
+        {(project.liveUrl || project.repoUrl) && (
+          <div className="project-links">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link primary"
+              >
+                Visit Live Site ↗
+              </a>
+            )}
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-link"
+              >
+                View Source ↗
+              </a>
+            )}
+          </div>
+        )}
+
+        {project.images.length > 0 && (
+          <div className="project-images">
+            {project.images.map((image, index) => (
+              <div key={image} className="project-image">
+                <img src={image} alt={`${project.title} - Image ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="project-content">
           <section className="project-section">
