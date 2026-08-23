@@ -34,6 +34,22 @@ A comprehensive health tracking application designed to help individuals manage 
 
 ---
 
+## Deployment
+
+Deployment is automatic. Every push to `main` runs
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which lints, builds, and
+publishes `dist/` to GitHub Pages. Nothing needs to be run locally.
+
+This requires **Settings → Pages → Build and deployment → Source: GitHub Actions**. The
+workflow attempts to set this itself, but it is worth confirming after the first run.
+
+`public/404.html` and the matching snippet in `index.html` keep client-side routes working
+on Pages, so a direct link to a project page survives a refresh.
+
+The `npm run deploy` script (`gh-pages -d dist`) is kept only as a manual fallback.
+
+---
+
 ## Contact
 
 I'm always open to discussing new projects, creative ideas, or opportunities to collaborate.
