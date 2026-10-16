@@ -1,0 +1,42 @@
+/* ==========================================================================
+   SITE — layout glue for the React build.
+   eink.css is the design handoff and is kept byte-identical so a revised
+   version can be dropped in. The reference pages set a few things with inline
+   styles (some with hardcoded hex); those live here instead, as classes built
+   only from eink.css tokens. Same hard rules: no colour, no gradients, no
+   shadows, no transitions, no transforms, radius 0.
+   ========================================================================== */
+
+/* Ink-coloured text where a role class would otherwise mute it */
+.ink { color: var(--ink); }
+
+.plain-list { list-style: none; }
+
+/* Home header: name, roles and contacts stacked beside the photo */
+.hdr-text { display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
+
+/* Section heading laid out on one line, e.g. "02 Projects ... 07 entries" */
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); margin-bottom: var(--s-5); }
+.sec-label--row { flex-direction: row; align-items: baseline; gap: var(--s-3); }
+
+/* Right-hand side of the mobile filter bar: count + open/close sign */
+.fi-toggle-r { display: flex; gap: var(--s-3); align-items: baseline; }
+
+/* Real images fill their dithered slot */
+.photo img,
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Detail page header block */
+.dt-hdr { display: flex; flex-direction: column; gap: var(--s-5); padding: var(--s-7) 0 0; }
+.dt-title { max-width: 22ch; }
+
+/* Overview: lead sentence sits flush; prose groups match list spacing */
+.overview .dash + .body,
+.overview .body + .dash { margin-top: var(--s-3); }
+
+/* Screenshots section on the detail page. Card thumbnails crop to the
+   design's 16:10 slot; here the real screenshots run from 0.87 to 2.25, so
+   they keep their natural ratio rather than losing most of a portrait shot. */
+.shots { display: flex; flex-direction: column; gap: var(--s-5); }
+.shots .shot { aspect-ratio: auto; }
+.shots .shot img { position: static; height: auto; }

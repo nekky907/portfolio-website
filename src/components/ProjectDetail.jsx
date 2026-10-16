@@ -1,130 +1,171 @@
+import { Fragment } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { projectsData } from '../projectData'
-import { FaArrowLeft } from 'react-icons/fa'
-import './ProjectDetail.css'
+import { TOTAL, pad, projectNumber } from '../format'
+import Inline from './Inline'
+import Page from './Page'
+import Section from './Section'
+
+const letter = i => String.fromCharCode(65 + i) // 0 -> "A"
+
+// Overview as structured content: a lead sentence, then lettered run-in
+// headings over dash lists or prose, closing with the Tech Stack spec table.
+function Overview({ overview }) {
+  const { lead, groups, specs } = overview
+
+  return (
+    <div className="measure overview">
+      <p className="lead"><Inline text={lead} /></p>
+
+      {groups.map((group, i) => (
+        <Fragment key={group.title}>
+          <h3 className="sub"><span className="k">{letter(i)}</span>{group.title}</h3>
+          {group.body && <p className="body"><Inline text={group.body} /></p>}
+          {group.items && (
+            <ul className="dash body">
+              {group.items.map(item => <li key={item}><Inline text={item} /></li>)}
+            </ul>
+          )}
+        </Fragment>
+      ))}
+
+      {specs.length > 0 && (
+        <>
+          <h3 className="sub"><span className="k">{letter(groups.length)}</span>Tech Stack</h3>
+          <dl className="spec body">
+            {specs.map(spec => (
+              <Fragment key={spec.key}>
+                <dt>{spec.key}</dt>
+                <dd><Inline text={spec.value} /></dd>
+              </Fragment>
+            ))}
+          </dl>
+        </>
+      )}
+    </div>
+  )
+}
+
+function DetailPage({ counter, backLabel, children }) {
+  const back = label => <Link to="/" className="link label ink">{label}</Link>
+  const count = <span className="label num">{counter}</span>
+
+  return (
+    <Page
+      stripLeft={back('← Back to Home')}
+      stripRight={count}
+      footLeft={back(backLabel)}
+      footRight={count}
+    >
+      {children}
+    </Page>
+  )
+}
+
+// Not-found and coming-soon screens share one layout
+function Placeholder({ title, message }) {
+  return (
+    <DetailPage counter={`Projects · ${TOTAL}`} backLabel="← Back to All Projects">
+      <div className="dt-hdr">
+        <h1 className="h1 dt-title">{title}</h1>
+        <div className="empty">
+          <span className="label">Result · 0 of {TOTAL}</span>
+          <p className="h3">{message}</p>
+          <Link to="/" className="btn">Show all projects</Link>
+        </div>
+      </div>
+    </DetailPage>
+  )
+}
 
 function ProjectDetail() {
   const { id } = useParams()
   const project = projectsData.find(p => p.id === Number(id))
 
   if (!project) {
-    return (
-      <div className="container">
-        <div className="content">
-          <h2>Project not found</h2>
-          <Link to="/" className="back-button">
-            <FaArrowLeft /> Back to Home
-          </Link>
-        </div>
-      </div>
-    )
+    return <Placeholder title="Project not found" message="There is no project at this address." />
   }
 
   if (project.comingSoon) {
-    return (
-      <div className="container project-detail-container">
-        <div className="content">
-          <Link to="/" className="back-button">
-            <FaArrowLeft /> Back to Home
-          </Link>
-          <div className="project-header">
-            <h1>{project.title}</h1>
-          </div>
-          <section className="project-section coming-soon-section">
-            <h2>Coming Soon</h2>
-            <p>Details for this project are still being written. Check back soon.</p>
-          </section>
-          <Link to="/" className="back-button bottom">
-            <FaArrowLeft /> Back to All Projects
-          </Link>
-        </div>
-      </div>
-    )
+    return <Placeholder title={project.title} message="Details for this project are still being written." />
   }
 
+  const { title, meta, tags, liveUrl, repoUrl, overview, challenge, solution, results, images } = project
+
   return (
-    <div className="container project-detail-container">
-      <div className="content">
-        <Link to="/" className="back-button">
-          <FaArrowLeft /> Back to Home
-        </Link>
+    <DetailPage
+      counter={`Project ${projectNumber(project)} / ${TOTAL}`}
+      backLabel="← Back to All Projects"
+    >
+      <header className="dt-hdr">
+        <h1 className="h1 dt-title">{title}</h1>
 
-        <div className="project-header">
-          <h1>{project.title}</h1>
-          <div className="tech-stack">
-            {project.tags.map(tag => (
-              <span key={tag} className="tech-tag">{tag}</span>
-            ))}
-          </div>
-          <p className="project-meta-large">{project.meta}</p>
-        </div>
-
-        {(project.liveUrl || project.repoUrl) && (
-          <div className="project-links">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link primary"
-              >
-                Visit Live Site ↗
-              </a>
-            )}
-            {project.repoUrl && (
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                View Source ↗
-              </a>
-            )}
-          </div>
-        )}
-
-        {project.images.length > 0 && (
-          <div className="project-images">
-            {project.images.map((image, index) => (
-              <div key={image} className="project-image">
-                <img src={image} alt={`${project.title} - Image ${index + 1}`} />
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="project-content">
-          <section className="project-section">
-            <h2>Overview</h2>
-            <p className="project-description">{project.fullDescription}</p>
-          </section>
-
-          <section className="project-section">
-            <h2>Challenge</h2>
-            <p>{project.challenge}</p>
-          </section>
-
-          <section className="project-section">
-            <h2>Solution</h2>
-            <p>{project.solution}</p>
-          </section>
-
-          <section className="project-section">
-            <h2>Key Results</h2>
-            <ul className="results-list">
-              {project.results.map(result => (
-                <li key={result}>{result}</li>
-              ))}
+        <div className="tb">
+          {meta.map(item => (
+            <div key={item}><span className="meta ink">{item}</span></div>
+          ))}
+          <div className="wide">
+            <span className="label">Tags</span>
+            <ul className="tb-tags plain-list">
+              {tags.map(tag => <li key={tag} className="tag">{tag}</li>)}
             </ul>
-          </section>
+          </div>
         </div>
 
-        <Link to="/" className="back-button bottom">
-          <FaArrowLeft /> Back to All Projects
-        </Link>
-      </div>
-    </div>
+        {(liveUrl || repoUrl) && (
+          <div className="btn-row">
+            {liveUrl && (
+              <a className="btn btn--primary" href={liveUrl} target="_blank" rel="noopener noreferrer">
+                Visit Live Site <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {repoUrl && (
+              <a className="btn" href={repoUrl} target="_blank" rel="noopener noreferrer">
+                View Source <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
+        )}
+      </header>
+
+      <Section no="01" title="Overview">
+        <Overview overview={overview} />
+      </Section>
+
+      <Section no="02" title="Challenge">
+        <p className="body measure">{challenge}</p>
+      </Section>
+
+      <Section no="03" title="Solution">
+        <p className="body measure">{solution}</p>
+      </Section>
+
+      <Section no="04" title="Key Results">
+        <ol className="results body measure">
+          {results.map((result, i) => (
+            <li key={result}>
+              <span className="i num">{pad(i + 1)}</span>
+              <span>{result}</span>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {images.length > 0 && (
+        <Section no="05" title="Screenshots">
+          <div className="shots measure">
+            {images.map((src, i) => (
+              <figure key={src} className="shot">
+                <img src={src} alt={`${title} — screenshot ${i + 1} of ${images.length}`} />
+                <figcaption className="label num">
+                  Screenshot · {pad(i + 1)} / {pad(images.length)}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
+    </DetailPage>
   )
 }
 
